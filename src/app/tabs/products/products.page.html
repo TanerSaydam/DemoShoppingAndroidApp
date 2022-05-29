@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-menu-button slot="start"></ion-menu-button>
+    <ion-title>Ürünler</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar [(ngModel)]="filterText"></ion-searchbar>
+  <ion-card *ngFor="let product of products | productPipe:filterText">
+    <ion-img class="ion-no-padding" src="{{ product.imageUrl }}"></ion-img>
+    <ion-card-header class="ion-text-center">
+      <ion-card-subtitle>
+        {{ product.price | currency:'TRY':'symbol-narrow':'1.2-2' }}
+      </ion-card-subtitle>
+      <ion-card-title>
+        {{ product.name }}
+      </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div *ngIf="!isAuthenticated">
+      <ion-item class="ion-text-center" *ngIf="product.inventoryQuantity > 0">
+        <ion-button size="medium" (click)="outQuantity(product)">
+          <ion-icon name="remove-outline"></ion-icon>
+        </ion-button>
+        <ion-label [innerText]="quantity" id="name-{{product.id}}"></ion-label>
+        <ion-button size="medium" (click)="addQuantity(product)">
+          <ion-icon name="duplicate-outline"></ion-icon>
+        </ion-button>
+      </ion-item>
+        <div *ngIf="product.inventoryQuantity > 0">
+          <ion-button expand="block" color="success" (click)="addBasket(product)">
+            <ion-icon name="bag-add-outline"></ion-icon>
+            Sepete Ekle
+          </ion-button>
+        </div>
+        <div *ngIf="product.inventoryQuantity === 0">
+          <h3 class="ion-text-center" style="color: red;">Stokta ürün kalmadı</h3>
+        </div>
+      </div>
+      <div *ngIf="isAuthenticated">
+        <ion-button expand="block" color="warning">
+          Güncelle
+        </ion-button>
+        <ion-button expand="block" color="danger">
+          Sil
+        </ion-button>
+      </div>
+      <ion-item class="ion-text-center">
+        <ion-label>
+          <p>Kalan Adet: {{ product.inventoryQuantity }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

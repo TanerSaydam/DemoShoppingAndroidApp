@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter.demo",
+	"appName": "DemoShoppingAndroidApp",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

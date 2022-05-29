@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-back-button slot="start" defaultHref="/tabs/baskets"></ion-back-button>
+    <ion-title>Ödeme Ekranı</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header class="ion-text-center">
+      <ion-card-subtitle>Toplam Tutar</ion-card-subtitle>
+      <ion-card-title>
+        {{ total | currency:'TRY':'symbol-narrow':'1.2-2'}}
+      </ion-card-title>
+      <ion-button (click)="payment()">
+        <ion-icon name="card-outline"></ion-icon>
+        Ödeme Yap
+      </ion-button>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label
+          position="floating">Kart
+          Sahibi</ion-label>
+        <ion-input
+        [(ngModel)]="cartOwner"
+          ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label
+          position="floating">Kart
+          Numarası</ion-label>
+          <ion-input
+          [(ngModel)]="cartNumber"
+
+          ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label
+          position="floating">Son
+          Kullanma
+          Tarihi</ion-label>
+          <ion-input
+          [(ngModel)]="expirationDate"
+          ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label
+          position="floating">CVV</ion-label>
+          <ion-input
+          [(ngModel)]="cvv"
+          minlength="3"
+          maxlength="3"
+          ></ion-input>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

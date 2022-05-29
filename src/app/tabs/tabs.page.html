@@ -1,0 +1,31 @@
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="products">
+      <ion-icon name="bag-add-outline"></ion-icon>
+      <ion-label>
+        Ürünler
+      </ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="baskets" *ngIf="!isAuthenticated">
+      <ion-icon name="cart-outline"></ion-icon>
+      <ion-label>
+        Sepetiniz
+      </ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="orders" *ngIf="!isAuthenticated">
+      <ion-icon name="bag-remove-outline"></ion-icon>
+      <ion-label>
+        Siparişler
+      </ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button (click)="logout()" *ngIf="isAuthenticated">
+      <ion-icon color="danger" name="log-out-outline"></ion-icon>
+      <ion-label color="danger">
+        Çıkış Yap
+      </ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
